@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background color */
+            color: #fff; /* Text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Adjusted to min-height to allow for scrolling */
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px;
+            padding: 20px;
+            background-color: #333; /* Container background color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #bbb; /* Heading color */
+            margin-top: 0; /* Add a top margin to prevent overlap */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #fff; /* Table text color */
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #555; /* Table border color */
+        }
+
+        th {
+            background-color: #444; /* Table header background color */
+            color: #fff; /* Table header text color */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #555; /* Even row background color */
+        }
+
+        tbody tr:hover {
+            background-color: #666; /* Hover row background color */
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #bbb; /* Paragraph text color */
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sales Prediction Results</h1>
+
+        <p style="background-color: #4caf50; color: #fff; padding: 10px; border-radius: 5px; font-weight: bold; text-align: center;">
+            Explore the forecasted sales for the next {{ num_months }} Months
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Predicted Sales</th>
+                    <th>Sales can lies Between </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in sales_predictions %}
+                <tr>
+                    <td>{{ prediction[0] }}</td>
+                    <td>{{ prediction[1]|int }}</td>
+                    <td>{{ prediction[2][0]|int }}-{{ prediction[2][1]|int }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
